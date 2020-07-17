@@ -22,7 +22,7 @@ jobs:
           cd src
           dotnet pack FpML.Confirmation.csproj -c Release -o ../out
       
-      - name: Build Confirmation
+      - name: Build Pretrade
         run: | 
           cd src
           dotnet pack FpML.Pretrade.csproj -c Release -o ../out
