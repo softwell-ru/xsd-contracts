@@ -17,7 +17,7 @@
   <Target Name="GenerateCSFromXSD" BeforeTargets="BeforeCompile">
     <ItemGroup>
       <XSDInput Include="schemes/confirmation/*.xsd"/>
-      <XSDInput Include="confirmation.xsd"/>
+      <XSDInput Include="schemes/confirmation.xsd"/>
     </ItemGroup>
     <Exec Command="$(MSBuildProjectDirectory)/../build_tools/xsd.exe @(XSDInput->'%(fullpath)', ' ') /classes /enableDataBinding /namespace:$(MSBuildProjectName) 1&gt;nul" />        
     <ItemGroup>
