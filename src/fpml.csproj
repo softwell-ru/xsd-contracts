@@ -1,0 +1,34 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard1.4</TargetFramework>
+    <GenerateAppxPackageOnBuild>true</GenerateAppxPackageOnBuild>
+    <Title>FpML</Title>
+    <PackageId>FpML.Confirmation.5.11</PackageId>
+    <PackageTitle>$(Title)</PackageTitle>
+    <Version>5.11.0</Version>
+    <Platforms>AnyCPU;x64</Platforms>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <!-- <RepositoryUrl>https://github.com/softwell-ru/quickfixn</RepositoryUrl> -->
+    <RepositoryType>git</RepositoryType>
+    <!-- <PackageProjectUrl>http://quickfixn.org/</PackageProjectUrl> -->
+    <!-- <PackageTags>QuickFIX QuickFIX/n FIX</PackageTags> -->
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+  <Target Name="GenerateCSFromXSD" BeforeTargets="BeforeCompile">
+    <ItemGroup>
+      <XSDInput Include="schemes/confirmation/*.xsd"/>
+      <XSDInput Include="fpml.xsd"/>
+    </ItemGroup>
+    <Exec Command="$(MSBuildProjectDirectory)/../build_tools/xsd.exe @(XSDInput->'%(fullpath)', ' ') /classes /enableDataBinding /namespace:$(MSBuildProjectName) 1&gt;nul" />        
+    <ItemGroup>
+      <Compile Remove="fpml.cs"/>
+      <Compile Include="fpml.cs"/>
+    </ItemGroup>
+  </Target>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="System.Xml.XmlSerializer" Version="4.3.0" />
+  </ItemGroup>
+</Project>
