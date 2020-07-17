@@ -3,12 +3,10 @@
     <TargetFramework>netstandard1.4</TargetFramework>
     <GenerateAppxPackageOnBuild>true</GenerateAppxPackageOnBuild>
     <Title>FpML</Title>
-    <PackageId>FpML.Confirmation.5.11</PackageId>
+    <PackageId>FpML.Confirmation</PackageId>
     <PackageTitle>$(Title)</PackageTitle>
     <Version>5.11.0</Version>
     <Platforms>AnyCPU;x64</Platforms>
-    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
-    <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <!-- <RepositoryUrl>https://github.com/softwell-ru/quickfixn</RepositoryUrl> -->
     <RepositoryType>git</RepositoryType>
     <!-- <PackageProjectUrl>http://quickfixn.org/</PackageProjectUrl> -->
