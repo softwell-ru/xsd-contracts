@@ -1,7 +1,7 @@
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace SoftWell.Ctor.Api.Contract.FpmlSpfi
+namespace FpML.SPFI
 {
     public partial class FxSingleLeg
     {

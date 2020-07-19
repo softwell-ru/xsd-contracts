@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SoftWell.Ctor.Api.Contract.FpmlNrd;
-namespace SoftWell.Ctor.Api.Contract.FpmlNrd
+namespace FpML.NSD
 {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.6.1586.0")]
     [System.SerializableAttribute()]
