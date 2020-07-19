@@ -19,16 +19,31 @@ jobs:
 
       - name: Build Confirmation
         run: | 
-          cd src
-          dotnet pack FpML.Confirmation.csproj -c Release -o ../out
+          cd src/FpML.Pure
+          dotnet pack FpML.Confirmation.csproj -c Release -o ../../out
       
       - name: Build Pretrade
         run: | 
-          cd src
-          dotnet pack FpML.Pretrade.csproj -c Release -o ../out
+          cd src/FpML.Pure
+          dotnet pack FpML.Pretrade.csproj -c Release -o ../../out
+      
+      - name: Build Spfi
+        run: | 
+          cd src/FpML.SPFI
+          dotnet pack -c Release -o ../../out      
+      - name: Build NSD
+        run: | 
+          cd src/FpML.NSD
+          dotnet pack -c Release -o ../../out
 
       - name: Push Confirmation to GitHub registry
         run: dotnet nuget push .\out\FpML.Confirmation.* --skip-duplicate 
         
       - name: Push Pretrade to GitHub registry
         run: dotnet nuget push .\out\FpML.Pretrade.* --skip-duplicate 
+        
+      - name: Push NSD to GitHub registry
+        run: dotnet nuget push .\out\FpML.NSD.* --skip-duplicate 
+
+      - name: Push SPFI to GitHub registry
+        run: dotnet nuget push .\out\FpML.SPFI.* --skip-duplicate 
