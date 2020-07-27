@@ -6,7 +6,7 @@
     <PackageTitle>$(Title)</PackageTitle>
     <Version>5.11.0</Version>
     <Platforms>AnyCPU;x64</Platforms>
-    <RepositoryUrl>https://github.com/softwell-ru/fpml</RepositoryUrl>
+    <RepositoryUrl>https://github.com/softwell-ru/xsd-contracts</RepositoryUrl>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>

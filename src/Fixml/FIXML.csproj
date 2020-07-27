@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+    <TargetFramework>netstandard1.4</TargetFramework>
+    <GenerateAppxPackageOnBuild>true</GenerateAppxPackageOnBuild>
+    <Title>FIXML</Title>
+    <PackageId>FIXML</PackageId>
+    <PackageTitle>$(Title)</PackageTitle>
+    <Version>5.0.SP2</Version>
+    <Platforms>AnyCPU;x64</Platforms>
+    <RepositoryUrl>https://github.com/softwell-ru/xsd-contracts</RepositoryUrl>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+  <Target Name="GenerateCSFromXSD" BeforeTargets="BeforeCompile">
+    <ItemGroup>
+      <XSDInput Include="fixml/*.xsd"/>
+      <XSDInput Include="fixml.xsd"/>
+    </ItemGroup>
+    <Exec Command="$(MSBuildProjectDirectory)/../../build_tools/xsd.exe @(XSDInput->'%(fullpath)', ' ') /classes /enableDataBinding /namespace:$(MSBuildProjectName) 1&gt;nul" />        
+    <ItemGroup>
+      <Compile Remove="fixml.cs"/>
+      <Compile Include="fixml.cs"/>
+    </ItemGroup>
+  </Target>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="System.Xml.XmlSerializer" Version="4.3.0" />
+    <PackageReference Include="System.Xml.XmlDocument" Version="4.3.0" />
+  </ItemGroup>
+</Project>
