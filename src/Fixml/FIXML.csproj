@@ -6,7 +6,7 @@
     <Title>FIXML</Title>
     <PackageId>FIXML</PackageId>
     <PackageTitle>$(Title)</PackageTitle>
-    <Version>5.0.SP2</Version>
+    <Version>5.0.2</Version>
     <Platforms>AnyCPU;x64</Platforms>
     <RepositoryUrl>https://github.com/softwell-ru/xsd-contracts</RepositoryUrl>
     <IncludeSymbols>true</IncludeSymbols>
