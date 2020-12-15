@@ -16,12 +16,12 @@
     <ItemGroup>      
       <XSDInput Include="xml.xsd" />
       <XSDInput Include="fpml/*.xsd" />      
-      <!-- <XSDInput Include="spfi.xsd" /> -->
+      <XSDInput Include="spfifix.xsd" />
     </ItemGroup>
     <Exec Command="$(MSBuildProjectDirectory)/../../build_tools/xsd.exe @(XSDInput->'%(fullpath)', ' ') /classes /namespace:$(MSBuildProjectName) 1&gt;nul" />
     <ItemGroup>
-        <Compile Remove="spfi.cs" />
-        <Compile Include="spfi.cs" />
+        <Compile Remove="spfifix.cs" />
+        <Compile Include="spfifix.cs" />
     </ItemGroup>
   </Target>
   <ItemGroup>
