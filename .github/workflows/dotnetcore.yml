@@ -48,19 +48,19 @@ jobs:
           dotnet pack -c Release -o ../../out
 
       - name: Push Confirmation to GitHub registry
-        run: dotnet nuget push .\out\FpML.Confirmation.* --skip-duplicate 
+        run: until dotnet nuget push .\out\FpML.Confirmation.* --skip-duplicate; sleep 1; done 
         
       - name: Push Pretrade to GitHub registry
-        run: dotnet nuget push .\out\FpML.Pretrade.* --skip-duplicate 
+        run: until dotnet nuget push .\out\FpML.Pretrade.* --skip-duplicate; sleep 1; done
         
       - name: Push NSD to GitHub registry
-        run: dotnet nuget push .\out\FpML.NSD.* --skip-duplicate 
+        run: until dotnet nuget push .\out\FpML.NSD.* --skip-duplicate; sleep 1; done
 
       - name: Push SPFI to GitHub registry
-        run: dotnet nuget push .\out\FpML.SPFI.* --skip-duplicate 
+        run: until dotnet nuget push .\out\FpML.SPFI.* --skip-duplicate; sleep 1; done
 
       - name: Push SPFI_FIX to GitHub registry
-        run: dotnet nuget push .\out\FpML.SPFI_FIX.* --skip-duplicate 
+        run: until dotnet nuget push .\out\FpML.SPFI_FIX.* --skip-duplicate; sleep 1; done
 
       - name: Push FIXML to GitHub registry
-        run: dotnet nuget push .\out\FIXML.* --skip-duplicate 
+        run: until dotnet nuget push .\out\FIXML.* --skip-duplicate; sleep 1; done
