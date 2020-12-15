@@ -48,31 +48,37 @@ jobs:
           dotnet pack -c Release -o ../../out
 
       - name: Push Confirmation to GitHub registry
+        shell: cmd
         run: |
           :repeat
            dotnet nuget push .\out\FpML.Confirmation.* --skip-duplicate || goto :repeat
         
       - name: Push Pretrade to GitHub registry
+        shell: cmd
         run: |
           :repeat
           dotnet nuget push .\out\FpML.Pretrade.* --skip-duplicate || goto :repeat
         
       - name: Push NSD to GitHub registry
+        shell: cmd
         run: |
           :repeat 
           dotnet nuget push .\out\FpML.NSD.* --skip-duplicate || goto :repeat
 
       - name: Push SPFI to GitHub registry
+        shell: cmd
         run: |
           :repeat
           dotnet nuget push .\out\FpML.SPFI.* --skip-duplicate || goto :repeat
 
       - name: Push SPFI_FIX to GitHub registry
+        shell: cmd
         run: |
           :repeat
           dotnet nuget push .\out\FpML.SPFI_FIX.* --skip-duplicate || goto :repeat
 
       - name: Push FIXML to GitHub registry
+        shell: cmd
         run: |
           :repeat
           dotnet nuget push .\out\FIXML.* --skip-duplicate || goto :repeat
