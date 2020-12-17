@@ -1,7 +1,7 @@
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace FpML.SPFI
+namespace FpML.SPFI_FIX
 {
     public partial class FxSingleLeg
     {

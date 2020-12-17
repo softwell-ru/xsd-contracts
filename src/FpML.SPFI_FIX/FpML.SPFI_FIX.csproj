@@ -6,7 +6,7 @@
     <Title>FpML</Title>
     <PackageId>FpML.SPFI_FIX</PackageId>
     <PackageTitle>$(Title)</PackageTitle>
-    <Version>1.4.0</Version>
+    <Version>1.4.1</Version>
     <Platforms>AnyCPU;x64</Platforms>
     <RepositoryUrl>https://github.com/softwell-ru/xsd-contracts</RepositoryUrl>
     <IncludeSymbols>true</IncludeSymbols>
