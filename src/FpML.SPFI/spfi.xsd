@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.moex.com/spfi-1" xmlns:ms="http://www.moex.com/spfi-1" xmlns:fpml="http://www.fpml.org/FpML-5/confirmation" targetNamespace="http://www.moex.com/spfi-1" elementFormDefault="qualified" version="1.4">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.moex.com/spfi-1" xmlns:ms="http://www.moex.com/spfi-1" xmlns:fpml="http://www.fpml.org/FpML-5/confirmation" targetNamespace="http://www.moex.com/spfi-1" elementFormDefault="qualified" version="1.5">
 	<xs:annotation>
-		<xs:documentation xml:lang="ru">Xsd-схема отчетов, предоставляемых на рынке СПФИ Московской Биржи. Версия: 1.4.</xs:documentation>
+		<xs:documentation xml:lang="ru">Xsd-схема отчетов, предоставляемых на рынке СПФИ Московской Биржи. Версия: 1.6.</xs:documentation>
 	</xs:annotation>
 	<xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="http://www.w3.org/2001/xml.xsd">
 		<xs:annotation>
@@ -25,6 +25,7 @@
 				<xs:element name="guaranteeFund" type="GuaranteeFund" minOccurs="0"/>
 				<xs:element name="initialMargin" type="InitialMargin" minOccurs="0"/>
 				<xs:element name="riskParameters" type="RiskParameters" minOccurs="0"/>
+				<xs:element name="userList" type="UserList" minOccurs="0"/>
 				<xs:element name="infoMessage" minOccurs="0" maxOccurs="unbounded">
 					<xs:annotation>
 						<xs:documentation xml:lang="ru">Информационный блок. Используется для отображения дополнительных сообщений в html представлении отчета. Не предполагает автоматическую обработку.</xs:documentation>
@@ -85,6 +86,11 @@
 			<xs:element name="creationTimestamp" type="xs:dateTime">
 				<xs:annotation>
 					<xs:documentation xml:lang="ru">Время генерации отчета.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="clearingSessionNo" type="xs:string">
+				<xs:annotation>
+					<xs:documentation xml:lang="ru">Номер клиринговой сессии.</xs:documentation>
 				</xs:annotation>
 			</xs:element>
 		</xs:sequence>
@@ -299,6 +305,11 @@
 										</xs:sequence>
 									</xs:complexType>
 								</xs:element>
+								<xs:element name="tradeComment" type="xs:string" minOccurs="0">
+									<xs:annotation>
+										<xs:documentation xml:lang="ru">Комментарий из сделки.</xs:documentation>
+									</xs:annotation>
+								</xs:element>
 							</xs:sequence>
 						</xs:complexType>
 					</xs:element>
@@ -386,6 +397,11 @@
 								<xs:documentation xml:lang="ru">Id расчетного кода.</xs:documentation>
 							</xs:annotation>
 						</xs:element>
+						<xs:element name="unifiedPoolStatus" type="xs:string">
+							<xs:annotation>
+								<xs:documentation xml:lang="ru">Является расчетным кодом Единого Пула.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
 						<xs:element name="balance" maxOccurs="unbounded">
 							<xs:annotation>
 								<xs:documentation xml:lang="ru">Информация по одному активу.</xs:documentation>
@@ -467,13 +483,18 @@
 											<xs:documentation xml:lang="ru">Оценка актива.</xs:documentation>
 										</xs:annotation>
 									</xs:element>
+									<xs:element name="amountAvailable" type="CurrencyAndAmount">
+										<xs:annotation>
+											<xs:documentation xml:lang="ru">Доступная к возврату сумма валюты.</xs:documentation>
+										</xs:annotation>
+									</xs:element>
 								</xs:sequence>
 								<xs:attribute name="id" type="xs:ID"/>
 							</xs:complexType>
 						</xs:element>
 						<xs:element name="estimateAmountSumm" type="CurrencyAndAmount">
 							<xs:annotation>
-								<xs:documentation xml:lang="ru">Суммарная оценка по всем активам.</xs:documentation>
+								<xs:documentation xml:lang="ru">Суммарная оценка средств обеспечения.</xs:documentation>
 							</xs:annotation>
 						</xs:element>
 						<xs:element name="initialMarginMin" type="CurrencyAndAmount">
@@ -484,6 +505,11 @@
 						<xs:element name="estimateAmountAvailable" type="CurrencyAndAmount">
 							<xs:annotation>
 								<xs:documentation xml:lang="ru">Свободные средства (суммарная оценка-мин.требования).</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="estimateAmountBalance" type="CurrencyAndAmount">
+							<xs:annotation>
+								<xs:documentation xml:lang="ru">Оценка обеспечения без риск-неттинга.</xs:documentation>
 							</xs:annotation>
 						</xs:element>
 					</xs:sequence>
@@ -506,7 +532,7 @@
 								<xs:documentation xml:lang="ru">База (FX, RUB OIS, RUB Rate Basis, XCCY Basis, USD IRS).</xs:documentation>
 							</xs:annotation>
 						</xs:element>
-						<xs:element name="riskType" minOccurs="0" type="xs:string">
+						<xs:element name="riskType" type="xs:string" minOccurs="0">
 							<xs:annotation>
 								<xs:documentation xml:lang="ru">Тип риска (Shift, Twist, Butterfly).</xs:documentation>
 							</xs:annotation>
@@ -559,6 +585,26 @@
 			</xs:element>
 		</xs:sequence>
 	</xs:complexType>
+	<!-- UserList type -->
+	<xs:complexType name="UserList">
+		<xs:annotation>
+			<xs:documentation xml:lang="ru">Список пользователей.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="user">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="userId" type="xs:string">
+							<xs:annotation>
+								<xs:documentation xml:lang="ru">Идентификатор пользователя.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+					<xs:attribute name="id" type="xs:ID"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
 	<!--  -->
 	<!-- Повторяющиеся элементы -->
 	<!-- CurrencyAndAmount type -->
@@ -583,32 +629,39 @@
 	</xs:complexType>
 	<xs:annotation>
 		<xs:documentation xml:lang="ru">
-			Изменения:
-            --- Версия 1.1 ---
-            Добавлен один уровень вложенности в InitialMargin (settlementCode)
-            Добавлен атрибут в settlementCode (id)
-            Добавлен один уровень вложенности в RiskParameters (risk)
-            Добавлен один уровень вложенности в npv (npvValue)
-            Изменена логика представления данных о риск-параметрах (теперь в виде кривой)
-            --- Версия 1.2 ---
-            Элемент party заменен на группу PartiesAndAccounts.model (для отображения аккаунтов)
-            Убран элемент secondPartyIdentifier, теперь сторона по парному договору указывается в fpml-части (partyTradeInformation/relatedParty)
-            Переименованы элементы внутри NPV, т.к. повторялись имена
-            Поменялась структура блока с ИКО (initialMargin): теперь балансы, обязательства и платежи группируются по активам
-            Добавлен новый тип AssetAndAmount для отображения активов отличных от валют
-            В конце сообщения добавлен элемент infoMessage (используется для отображения дополнительных текстовых сообщений в html представлении; не предполагает автоматическую обработку)
-            Группа payerReceiver ликвидирована за ненадобностью
-            Изменена структура элемента GuaranteeFund так, чтобы можно было учитывать несколько разных базовых активов
-            --- Версия 1.3 ---
-            Для элементов, которые имеют фиксированный набор строковых данных, теперь указываются атрибут со ссылкой на их возможные значения (до перезда на домен moex.com все схемы доступны по адресу https://www.dropbox.com/sh/4rgp0uzcl6mj5cs/AAAyTMozumQksn3oWRj0JAlHa?dl=0 )
-            Элемент liabilityType переименован в liabilityGroup
-            Элемент liabilityCode переименован в liabilityType, а также ему добавлен атрибут liabilityTypeScheme
-            Элемент paymentStatus перенесен на один уровень выше (из tradeInfo в moexSpfiExt)
-            В элемент moexSpfiExt добавлен новый элемент paymentBase (по сути - копия fpml:TermDeposit), в котором указываются параметры для расчета платежа с начисленными процентов (тип = PRC_DM)
-            --- Версия 1.4 ---
-            Комментарии с описанием элементов перенесены в xs:documentation
-			Добавлено изменение параметров сделки (amendment)
-			Добавлено досрочное закрытие сделки (termination)
+		Изменения:
+		--- Версия 1.1 ---
+		Добавлен один уровень вложенности в InitialMargin (settlementCode)
+		Добавлен атрибут в settlementCode (id)
+		Добавлен один уровень вложенности в RiskParameters (risk)
+		Добавлен один уровень вложенности в npv (npvValue)
+		Изменена логика представления данных о риск-параметрах (теперь в виде кривой)
+		--- Версия 1.2 ---
+		Элемент party заменен на группу PartiesAndAccounts.model (для отображения аккаунтов)
+		Убран элемент secondPartyIdentifier, теперь сторона по парному договору указывается в fpml-части (partyTradeInformation/relatedParty)
+		Переименованы элементы внутри NPV, т.к. повторялись имена
+		Поменялась структура блока с ИКО (initialMargin): теперь балансы, обязательства и платежи группируются по активам
+		Добавлен новый тип AssetAndAmount для отображения активов отличных от валют
+		В конце сообщения добавлен элемент infoMessage (используется для отображения дополнительных текстовых сообщений в html представлении; не предполагает автоматическую обработку)
+		Группа payerReceiver ликвидирована за ненадобностью
+		Изменена структура элемента GuaranteeFund так, чтобы можно было учитывать несколько разных базовых активов
+		--- Версия 1.3 ---
+		Для элементов, которые имеют фиксированный набор строковых данных, теперь указываются атрибут со ссылкой на их возможные значения (до перезда на домен moex.com все схемы доступны по адресу https://www.dropbox.com/sh/4rgp0uzcl6mj5cs/AAAyTMozumQksn3oWRj0JAlHa?dl=0 )
+		Элемент liabilityType переименован в liabilityGroup
+		Элемент liabilityCode переименован в liabilityType, а также ему добавлен атрибут liabilityTypeScheme
+		Элемент paymentStatus перенесен на один уровень выше (из tradeInfo в moexSpfiExt)
+		В элемент moexSpfiExt добавлен новый элемент paymentBase (по сути - копия fpml:TermDeposit), в котором указываются параметры для расчета платежа с начисленными процентов (тип = PRC_DM)
+		--- Версия 1.4 ---
+		Комментарии с описанием элементов перенесены в xs:documentation
+		Добавлено изменение параметров сделки (amendment)
+		Добавлено досрочное закрытие сделки (termination)
+		--- Версия 1.5 ---
+		Добавлен атрибут в settlementCode (unifiedPoolStatus)
+		Добавлен элемент в header (clearingSessionNo)
+		Добавлен блок в moexSpfiReport (UserList)
+		--- Версия 1.6 ---
+		Добавлен элемент в balance (amountAvailable)
+		Добавлен элемент в settlementCode (estimateAmountBalance)
 		</xs:documentation>
 	</xs:annotation>
 </xs:schema>

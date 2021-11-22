@@ -6,26 +6,26 @@
     <Title>FpML</Title>
     <PackageId>FpML.SPFI</PackageId>
     <PackageTitle>$(Title)</PackageTitle>
-    <Version>1.4.0</Version>
+    <Version>1.6.0</Version>
     <Platforms>AnyCPU;x64</Platforms>
     <RepositoryUrl>https://github.com/softwell-ru/xsd-contracts</RepositoryUrl>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
   <Target Name="GenerateCSFromXSD" BeforeTargets="BeforeCompile">
-    <ItemGroup>      
+    <ItemGroup>
       <XSDInput Include="xml.xsd" />
-      <XSDInput Include="fpml/*.xsd" />      
+      <XSDInput Include="fpml/*.xsd" />
       <XSDInput Include="spfi.xsd" />
     </ItemGroup>
     <Exec Command="$(MSBuildProjectDirectory)/../../build_tools/xsd.exe @(XSDInput->'%(fullpath)', ' ') /classes /namespace:$(MSBuildProjectName) 1&gt;nul" />
     <ItemGroup>
-        <Compile Remove="spfi.cs" />
-        <Compile Include="spfi.cs" />
+      <Compile Remove="spfi.cs" />
+      <Compile Include="spfi.cs" />
     </ItemGroup>
   </Target>
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="System.Xml.XmlSerializer" Version="4.3.0" />
   </ItemGroup>
 </Project>

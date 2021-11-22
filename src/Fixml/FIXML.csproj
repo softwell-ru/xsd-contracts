@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <Project Sdk="Microsoft.NET.Sdk">
-    <PropertyGroup>
+  <PropertyGroup>
     <TargetFramework>netstandard1.4</TargetFramework>
     <GenerateAppxPackageOnBuild>true</GenerateAppxPackageOnBuild>
     <Title>FIXML</Title>
@@ -17,14 +17,14 @@
       <XSDInput Include="fixml/*.xsd"/>
       <XSDInput Include="fixml.xsd"/>
     </ItemGroup>
-    <Exec Command="$(MSBuildProjectDirectory)/../../build_tools/xsd.exe @(XSDInput->'%(fullpath)', ' ') /classes /enableDataBinding /namespace:$(MSBuildProjectName) 1&gt;nul" />        
+    <Exec Command="$(MSBuildProjectDirectory)/../../build_tools/xsd.exe @(XSDInput->'%(fullpath)', ' ') /classes /enableDataBinding /namespace:$(MSBuildProjectName) 1&gt;nul" />
     <ItemGroup>
       <Compile Remove="fixml.cs"/>
       <Compile Include="fixml.cs"/>
     </ItemGroup>
   </Target>
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="System.Xml.XmlSerializer" Version="4.3.0" />
     <PackageReference Include="System.Xml.XmlDocument" Version="4.3.0" />
   </ItemGroup>
