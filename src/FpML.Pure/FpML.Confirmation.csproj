@@ -4,7 +4,7 @@
     <GenerateAppxPackageOnBuild>true</GenerateAppxPackageOnBuild>
     <PackageId>FpML.Confirmation</PackageId>
     <PackageTitle>$(Title)</PackageTitle>
-    <Version>5.11.0</Version>
+    <Version>5.11.0.1</Version>
     <Platforms>AnyCPU;x64</Platforms>
     <RepositoryUrl>https://github.com/softwell-ru/xsd-contracts</RepositoryUrl>
     <IncludeSymbols>true</IncludeSymbols>
@@ -15,7 +15,7 @@
       <XSDInput Include="schemes/confirmation/*.xsd"/>
       <XSDInput Include="schemes/confirmation.xsd"/>
     </ItemGroup>
-    <Exec Command="$(MSBuildProjectDirectory)/../../build_tools/xsd.exe @(XSDInput->'%(fullpath)', ' ') /classes /enableDataBinding /namespace:$(MSBuildProjectName) 1&gt;nul" />
+    <Exec Command="$(MSBuildProjectDirectory)/../../build_tools/xsd.exe @(XSDInput->'%(fullpath)', ' ') /classes /namespace:$(MSBuildProjectName) 1&gt;nul" />
     <ItemGroup>
       <Compile Remove="confirmation.cs"/>
       <Compile Include="confirmation.cs"/>
