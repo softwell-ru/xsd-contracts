@@ -4,13 +4,13 @@
     <GenerateAppxPackageOnBuild>true</GenerateAppxPackageOnBuild>
     <PackageId>FpML.Confirmation</PackageId>
     <PackageTitle>$(Title)</PackageTitle>
-    <Version>5.11.0.1</Version>
+    <Version>5.11.0.2</Version>
     <Platforms>AnyCPU;x64</Platforms>
     <RepositoryUrl>https://github.com/softwell-ru/xsd-contracts</RepositoryUrl>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
-  <Target Name="GenerateCSFromXSD" BeforeTargets="BeforeCompile">
+  <!-- <Target Name="GenerateCSFromXSD" BeforeTargets="BeforeCompile">
     <ItemGroup>
       <XSDInput Include="schemes/confirmation/*.xsd"/>
       <XSDInput Include="schemes/confirmation.xsd"/>
@@ -20,7 +20,11 @@
       <Compile Remove="confirmation.cs"/>
       <Compile Include="confirmation.cs"/>
     </ItemGroup>
-  </Target>
+  </Target> -->
+  <ItemGroup>
+      <Compile Remove="confirmation.cs"/>
+      <Compile Include="confirmation.cs"/>
+    </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="System.Xml.XmlSerializer" Version="4.3.0" />
