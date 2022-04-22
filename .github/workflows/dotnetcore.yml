@@ -17,33 +17,36 @@ jobs:
         env:
           NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
+      - name: FpML.Pure tests
+        run: dotnet test tests/FpML.Pure.Tests/FpML.Pure.Tests.csproj
+
       - name: Build Confirmation
-        run: | 
+        run: |
           cd src\FpML.Pure
           dotnet pack FpML.Confirmation.csproj -c Release -o ../../out
-      
+
       - name: Build Pretrade
-        run: | 
+        run: |
           cd src\FpML.Pure
           dotnet pack FpML.Pretrade.csproj -c Release -o ../../out
-      
+
       - name: Build Spfi
-        run: | 
+        run: |
           cd src\FpML.SPFI
-          dotnet pack -c Release -o ../../out      
-           
+          dotnet pack -c Release -o ../../out
+
       - name: Build Spfi Fix
-        run: | 
+        run: |
           cd src\FpML.SPFI_FIX
-          dotnet pack -c Release -o ../../out      
+          dotnet pack -c Release -o ../../out
 
       - name: Build NSD
-        run: | 
+        run: |
           cd src\FpML.NSD
           dotnet pack -c Release -o ../../out
 
       - name: Build FIXML
-        run: | 
+        run: |
           cd src\FIXML
           dotnet pack -c Release -o ../../out
 
@@ -52,13 +55,13 @@ jobs:
         run: |
           :repeat
            dotnet nuget push .\out\FpML.Confirmation.* --skip-duplicate || goto :repeat
-        
+
       - name: Push Pretrade to GitHub registry
         shell: cmd
         run: |
           :repeat
           dotnet nuget push .\out\FpML.Pretrade.* --skip-duplicate || goto :repeat
-        
+
       - name: Push NSD to GitHub registry
         shell: cmd
         run: |
