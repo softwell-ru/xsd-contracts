@@ -4,7 +4,7 @@
     <GenerateAppxPackageOnBuild>true</GenerateAppxPackageOnBuild>
     <PackageId>FpML.Confirmation</PackageId>
     <PackageTitle>$(Title)</PackageTitle>
-    <Version>5.11.0.2</Version>
+    <Version>5.11.0.3</Version>
     <Platforms>AnyCPU;x64</Platforms>
     <RepositoryUrl>https://github.com/softwell-ru/xsd-contracts</RepositoryUrl>
     <IncludeSymbols>true</IncludeSymbols>
