@@ -1,7 +1,7 @@
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace FpML.SPFI
+namespace SoftWell.Fpml.Spfi
 {
     public partial class FxSingleLeg
     {
@@ -23,6 +23,6 @@ namespace FpML.SPFI
     public partial class moexSpfiReport
     {
         [System.Xml.Serialization.XmlAttributeAttribute(Form = System.Xml.Schema.XmlSchemaForm.Qualified, Namespace = "http://www.w3.org/2001/XMLSchema-instance")]
-        public string schemaLocation{get;set;}
+        public string schemaLocation { get; set; }
     }
 }
