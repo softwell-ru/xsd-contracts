@@ -18,10 +18,8 @@ jobs:
           DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
           DOTNET_NOLOGO: true
           DOTNET_CLI_TELEMETRY_OPTOUT: true
-      - name: cd
-        run: cd /home/runner/work/xsd-contracts/xsd-contracts/src/Fixml
       - name: ls
-        run: ls -la
+        run: cd /home/runner/work/xsd-contracts/xsd-contracts/src/Fixml | ls -la
       - name: Restore dependencies
         run: dotnet restore --no-cache
         env:
