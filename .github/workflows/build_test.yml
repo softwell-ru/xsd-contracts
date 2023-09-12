@@ -19,8 +19,8 @@ jobs:
           DOTNET_NOLOGO: true
           DOTNET_CLI_TELEMETRY_OPTOUT: true
       - name: cd
-        run: cd /home/runner/work/xsd-contracts/xsd-contracts/
-      - name: cd
+        run: cd /home/runner/work/xsd-contracts/xsd-contracts/src/Fixml
+      - name: ls
         run: ls -la
       - name: Restore dependencies
         run: dotnet restore --no-cache
