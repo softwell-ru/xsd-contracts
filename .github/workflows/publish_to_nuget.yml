@@ -34,7 +34,7 @@ jobs:
       - name: Push packages to nuget
         shell: pwsh
         run: |
-          foreach($file in (Get-ChildItem ./packages111 -Recurse -Include *.nupkg)) {
+          foreach($file in (Get-ChildItem ./src -Recurse -Include *.nupkg)) {
               dotnet nuget push $file --source nuget.org --api-key "${{ secrets.NUGET_API_KEY }}" --skip-duplicate
           }
         env:
