@@ -32,9 +32,11 @@ jobs:
           DOTNET_NOLOGO: true
           DOTNET_CLI_TELEMETRY_OPTOUT: true
       - name: Push packages to nuget
-        shell: bash
+        shell: pwsh
         run: |
-          until dotnet nuget push ./packages/*.nupkg --api-key "${{ secrets.NUGET_API_KEY }}" --source nuget.org --skip-duplicate; do echo "Retrying"; sleep 1; done
+          foreach($file in (Get-ChildItem ./packages -Recurse -Include *.nupkg)) {
+              dotnet nuget push $file --api-key "${{ secrets.NUGET_API_KEY }}" --source nuget.org --skip-duplicate
+          }
         env:
           DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
           DOTNET_NOLOGO: true
