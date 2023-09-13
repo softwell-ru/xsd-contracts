@@ -1,6 +1,9 @@
 name: Generate XSD contracts
 
-on: workflow_dispatch
+on:
+  pull_request:
+    branches: [dev, release/*]
+  workflow_dispatch:
 
 jobs:
   generate:
@@ -14,8 +17,3 @@ jobs:
           cd ./src/Fixml/
           ../../build_tools/xsd.exe ./fixml/fixml-allocation-impl-5-0-SP2.xsd ./fixml/fixml-securitiesreference-base-5-0-SP2.xsd ./fixml/fixml-marginrequirement-base-5-0-SP2.xsd ./fixml/fixml-confirmation-impl-5-0-SP2.xsd ./fixml/fixml-indications-impl-5-0-SP2.xsd ./fixml/fixml-multilegorders-base-5-0-SP2.xsd ./fixml/fixml-trade-5-0-SP2.xsd ./fixml/fixml-multilegorders-impl-5-0-SP2.xsd ./fixml/fixml-indications-base-5-0-SP2.xsd ./fixml/fixml-allocation-base-5-0-SP2.xsd ./fixml/fixml-securitiesreference-impl-5-0-SP2.xsd ./fixml/fixml-marginrequirement-impl-5-0-SP2.xsd ./fixml/fixml-confirmation-base-5-0-SP2.xsd ./fixml/fixml-collateral-impl-5-0-SP2.xsd ./fixml/fixml-tradecapture-impl-5-0-SP2.xsd ./fixml/fixml-fields-impl-5-0-SP2.xsd ./fixml/fixml-metadata-5-0-SP2.xsd ./fixml/fixml-crossorders-impl-5-0-SP2.xsd ./fixml/fixml-fields-base-5-0-SP2.xsd ./fixml/fixml-crossorders-base-5-0-SP2.xsd ./fixml/fixml-collateral-base-5-0-SP2.xsd ./fixml/fixml-tradecapture-base-5-0-SP2.xsd ./fixml/fixml-ordermasshandling-impl-5-0-SP2.xsd ./fixml/fixml-marketdata-base-5-0-SP2.xsd ./fixml/fixml-order-impl-5-0-SP2.xsd ./fixml/fixml-quotation-base-5-0-SP2.xsd ./fixml/fixml-application-base-5-0-SP2.xsd ./fixml/fixml-usermanagement-base-5-0-SP2.xsd ./fixml/fixml-listorders-impl-5-0-SP2.xsd ./fixml/fixml-accountreporting-base-5-0-SP2.xsd ./fixml/fixml-newsevents-impl-5-0-SP2.xsd ./fixml/fixml-infrastructure-5-0-SP2.xsd ./fixml/fixml-positions-impl-5-0-SP2.xsd ./fixml/fixml-main-5-0-SP2.xsd ./fixml/fixml-application-impl-5-0-SP2.xsd ./fixml/fixml-usermanagement-impl-5-0-SP2.xsd ./fixml/fixml-quotation-impl-5-0-SP2.xsd ./fixml/fixml-posttrade-5-0-SP2.xsd ./fixml/fixml-listorders-base-5-0-SP2.xsd ./fixml/fixml-accountreporting-impl-5-0-SP2.xsd ./fixml/fixml-newsevents-base-5-0-SP2.xsd ./fixml/fixml-positions-base-5-0-SP2.xsd ./fixml/fixml-ordermasshandling-base-5-0-SP2.xsd ./fixml/fixml-marketdata-impl-5-0-SP2.xsd ./fixml/fixml-order-base-5-0-SP2.xsd ./fixml/fixml-partiesreference-impl-5-0-SP2.xsd ./fixml/fixml-pretrade-5-0-SP2.xsd ./fixml/fixml-partiesaction-base-5-0-SP2.xsd ./fixml/fixml-network-impl-5-0-SP2.xsd ./fixml/fixml-registration-impl-5-0-SP2.xsd ./fixml/fixml-datatypes-5-0-SP2.xsd ./fixml/fixml-businessreject-impl-5-0-SP2.xsd ./fixml/fixml-marketstructure-base-5-0-SP2.xsd ./fixml/fixml-components-impl-5-0-SP2.xsd ./fixml/fixml-settlement-impl-5-0-SP2.xsd ./fixml/fixml-marketstructure-impl-5-0-SP2.xsd ./fixml/fixml-components-base-5-0-SP2.xsd ./fixml/fixml-settlement-base-5-0-SP2.xsd ./fixml/fixml-partiesreference-base-5-0-SP2.xsd ./fixml/fixml-partiesaction-impl-5-0-SP2.xsd ./fixml/fixml-network-base-5-0-SP2.xsd ./fixml/fixml-registration-base-5-0-SP2.xsd ./fixml/fixml-businessreject-base-5-0-SP2.xsd ./fixml.xsd /classes /enableDataBinding /namespace:SoftWell.Fixml
           cd ../../
-          git add ./src/Fixml//*.cs
-          git commit -m "Fixml generation"
-          - 
-          - 
-          - git push --set-upstream origin ${{github.ref_name}}
