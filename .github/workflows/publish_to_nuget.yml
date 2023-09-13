@@ -34,7 +34,7 @@ jobs:
       - name: Push packages to nuget
         shell: bash
         run: |
-          until dotnet nuget push ./packages/*.nupkg -k ${{ secrets.NUGET_API_KEY }} --skip-duplicate; do echo "Retrying"; sleep 1; done
+          until dotnet nuget push ./packages/*.nupkg --api-key "${{ secrets.NUGET_API_KEY }}" --source nuget.org --skip-duplicate; do echo "Retrying"; sleep 1; done
         env:
           DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
           DOTNET_NOLOGO: true
