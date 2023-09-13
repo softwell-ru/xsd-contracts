@@ -35,7 +35,7 @@ jobs:
         shell: pwsh
         run: |
           foreach($file in (Get-ChildItem ./packages -Recurse -Include *.nupkg)) {
-              dotnet nuget push $file --api-key "${{ secrets.NUGET_API_KEY }}" --source nuget.org --skip-duplicate
+              dotnet nuget push $file --source nuget.org --api-key "${{ secrets.NUGET_API_KEY }}" --skip-duplicate
           }
         env:
           DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
