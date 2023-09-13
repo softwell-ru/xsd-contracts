@@ -2,7 +2,7 @@ name: Publish nuget packages
 
 on:
   push:
-    branches: [dev, release/*, arwyl/migrate]
+    branches: [dev, release/*]
   workflow_dispatch:
 
 jobs:
@@ -34,7 +34,7 @@ jobs:
       - name: Push packages to nuget
         shell: pwsh
         run: |
-          foreach($file in (Get-ChildItem ./src -Recurse -Include *.nupkg)) {
+          foreach($file in (Get-ChildItem ./packages -Recurse -Include *.nupkg)) {
               dotnet nuget push $file --source nuget.org --api-key "${{ secrets.NUGET_API_KEY }}" --skip-duplicate
           }
         env:
