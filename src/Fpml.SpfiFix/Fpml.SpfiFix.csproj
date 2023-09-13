@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\AssemblyInfo.props" />
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.4</TargetFramework>
+    <GenerateAppxPackageOnBuild>true</GenerateAppxPackageOnBuild>
+    <Title>SoftWell.Fpml.SpfiFix</Title>
+    <PackageId>SoftWell.Fpml.SpfiFix</PackageId>
+    <PackageTitle>$(Title)</PackageTitle>
+    <Version>1.7.1</Version>
+    <AssemblyName>SoftWell.Fpml.SpfiFix</AssemblyName>
+    <RootNamespace>SoftWell.Fpml.SpfiFix</RootNamespace>
+    <Platforms>AnyCPU;x64</Platforms>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+  <!-- <Target Name="GenerateCSFromXSD" BeforeTargets="BeforeCompile">
+    <ItemGroup>
+      <XSDInput Include="xml.xsd" />
+      <XSDInput Include="fpml/*.xsd" />
+      <XSDInput Include="spfifix.xsd" />
+    </ItemGroup>
+    <Exec Command="$(MSBuildProjectDirectory)/../../build_tools/xsd.exe @(XSDInput->'%(fullpath)', ' ') /classes /namespace:SoftWell.$(MSBuildProjectName) 1&gt;nul" />
+    <ItemGroup>
+      <Compile Remove="spfifix.cs" />
+      <Compile Include="spfifix.cs" />
+    </ItemGroup>
+  </Target> -->
+  <ItemGroup>
+    <Compile Remove="spfifix.cs" />
+    <Compile Include="spfifix.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="System.Xml.XmlSerializer" Version="4.3.0" />
+  </ItemGroup>
+</Project>

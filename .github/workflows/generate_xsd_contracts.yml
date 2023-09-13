@@ -1,0 +1,58 @@
+name: Generate XSD contracts
+
+on:
+  workflow_dispatch:
+    branches-ignore:
+      - "dev"
+      - "release/**"
+
+jobs:
+  generate:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Generate XSD contracts
+        run: |
+          chcp 65001
+
+          git config user.name "GitHub Workflow Bot"
+          git config user.email "<>"
+
+          cd ./src/Fixml/
+          ../../build_tools/xsd.exe ./fixml/fixml-allocation-impl-5-0-SP2.xsd ./fixml/fixml-securitiesreference-base-5-0-SP2.xsd ./fixml/fixml-marginrequirement-base-5-0-SP2.xsd ./fixml/fixml-confirmation-impl-5-0-SP2.xsd ./fixml/fixml-indications-impl-5-0-SP2.xsd ./fixml/fixml-multilegorders-base-5-0-SP2.xsd ./fixml/fixml-trade-5-0-SP2.xsd ./fixml/fixml-multilegorders-impl-5-0-SP2.xsd ./fixml/fixml-indications-base-5-0-SP2.xsd ./fixml/fixml-allocation-base-5-0-SP2.xsd ./fixml/fixml-securitiesreference-impl-5-0-SP2.xsd ./fixml/fixml-marginrequirement-impl-5-0-SP2.xsd ./fixml/fixml-confirmation-base-5-0-SP2.xsd ./fixml/fixml-collateral-impl-5-0-SP2.xsd ./fixml/fixml-tradecapture-impl-5-0-SP2.xsd ./fixml/fixml-fields-impl-5-0-SP2.xsd ./fixml/fixml-metadata-5-0-SP2.xsd ./fixml/fixml-crossorders-impl-5-0-SP2.xsd ./fixml/fixml-fields-base-5-0-SP2.xsd ./fixml/fixml-crossorders-base-5-0-SP2.xsd ./fixml/fixml-collateral-base-5-0-SP2.xsd ./fixml/fixml-tradecapture-base-5-0-SP2.xsd ./fixml/fixml-ordermasshandling-impl-5-0-SP2.xsd ./fixml/fixml-marketdata-base-5-0-SP2.xsd ./fixml/fixml-order-impl-5-0-SP2.xsd ./fixml/fixml-quotation-base-5-0-SP2.xsd ./fixml/fixml-application-base-5-0-SP2.xsd ./fixml/fixml-usermanagement-base-5-0-SP2.xsd ./fixml/fixml-listorders-impl-5-0-SP2.xsd ./fixml/fixml-accountreporting-base-5-0-SP2.xsd ./fixml/fixml-newsevents-impl-5-0-SP2.xsd ./fixml/fixml-infrastructure-5-0-SP2.xsd ./fixml/fixml-positions-impl-5-0-SP2.xsd ./fixml/fixml-main-5-0-SP2.xsd ./fixml/fixml-application-impl-5-0-SP2.xsd ./fixml/fixml-usermanagement-impl-5-0-SP2.xsd ./fixml/fixml-quotation-impl-5-0-SP2.xsd ./fixml/fixml-posttrade-5-0-SP2.xsd ./fixml/fixml-listorders-base-5-0-SP2.xsd ./fixml/fixml-accountreporting-impl-5-0-SP2.xsd ./fixml/fixml-newsevents-base-5-0-SP2.xsd ./fixml/fixml-positions-base-5-0-SP2.xsd ./fixml/fixml-ordermasshandling-base-5-0-SP2.xsd ./fixml/fixml-marketdata-impl-5-0-SP2.xsd ./fixml/fixml-order-base-5-0-SP2.xsd ./fixml/fixml-partiesreference-impl-5-0-SP2.xsd ./fixml/fixml-pretrade-5-0-SP2.xsd ./fixml/fixml-partiesaction-base-5-0-SP2.xsd ./fixml/fixml-network-impl-5-0-SP2.xsd ./fixml/fixml-registration-impl-5-0-SP2.xsd ./fixml/fixml-datatypes-5-0-SP2.xsd ./fixml/fixml-businessreject-impl-5-0-SP2.xsd ./fixml/fixml-marketstructure-base-5-0-SP2.xsd ./fixml/fixml-components-impl-5-0-SP2.xsd ./fixml/fixml-settlement-impl-5-0-SP2.xsd ./fixml/fixml-marketstructure-impl-5-0-SP2.xsd ./fixml/fixml-components-base-5-0-SP2.xsd ./fixml/fixml-settlement-base-5-0-SP2.xsd ./fixml/fixml-partiesreference-base-5-0-SP2.xsd ./fixml/fixml-partiesaction-impl-5-0-SP2.xsd ./fixml/fixml-network-base-5-0-SP2.xsd ./fixml/fixml-registration-base-5-0-SP2.xsd ./fixml/fixml-businessreject-base-5-0-SP2.xsd ./fixml.xsd /classes /enableDataBinding /namespace:SoftWell.Fixml
+          cd ../../
+          git add ./src/Fixml/*.cs
+          git commit -m "Fixml generation"
+
+          cd ./src/Fpml.Confirmation/
+          ../../build_tools/xsd.exe ../../xsd-schemes/fpml-pure/confirmation/fpml-eq-shared-5-11.xsd ../../xsd-schemes/fpml-pure/confirmation/fpml-mktenv-5-11.xsd ../../xsd-schemes/fpml-pure/confirmation/fpml-variance-swaps-5-11.xsd ../../xsd-schemes/fpml-pure/confirmation/fpml-ird-5-11.xsd ../../xsd-schemes/fpml-pure/confirmation/fpml-main-5-11.xsd ../../xsd-schemes/fpml-pure/confirmation/fpml-credit-event-notification-5-11.xsd ../../xsd-schemes/fpml-pure/confirmation/fpml-com-5-11.xsd ../../xsd-schemes/fpml-pure/confirmation/fpml-fx-5-11.xsd ../../xsd-schemes/fpml-pure/confirmation/fpml-generic-5-11.xsd ../../xsd-schemes/fpml-pure/confirmation/fpml-cd-5-11.xsd ../../xsd-schemes/fpml-pure/confirmation/fpml-sec-lending-5-11.xsd ../../xsd-schemes/fpml-pure/confirmation/fpml-eqd-5-11.xsd ../../xsd-schemes/fpml-pure/confirmation/fpml-msg-5-11.xsd ../../xsd-schemes/fpml-pure/confirmation/fpml-valuation-5-11.xsd ../../xsd-schemes/fpml-pure/confirmation/fpml-confirmation-processes-5-11.xsd ../../xsd-schemes/fpml-pure/confirmation/fpml-reg-reporting-shared-5-11.xsd ../../xsd-schemes/fpml-pure/confirmation/fpml-correlation-swaps-5-11.xsd ../../xsd-schemes/fpml-pure/confirmation/fpml-asset-5-11.xsd ../../xsd-schemes/fpml-pure/confirmation/fpml-riskdef-5-11.xsd ../../xsd-schemes/fpml-pure/confirmation/fpml-doc-5-11.xsd ../../xsd-schemes/fpml-pure/confirmation/fpml-clearing-processes-5-11.xsd ../../xsd-schemes/fpml-pure/confirmation/fpml-volatility-swaps-5-11.xsd ../../xsd-schemes/fpml-pure/confirmation/xmldsig-core-schema.xsd ../../xsd-schemes/fpml-pure/confirmation/fpml-bond-option-5-11.xsd ../../xsd-schemes/fpml-pure/confirmation/fpml-loan-5-11.xsd ../../xsd-schemes/fpml-pure/confirmation/fpml-fx-targets-5-11.xsd ../../xsd-schemes/fpml-pure/confirmation/fpml-standard-5-11.xsd ../../xsd-schemes/fpml-pure/confirmation/fpml-shared-5-11.xsd ../../xsd-schemes/fpml-pure/confirmation/fpml-option-shared-5-11.xsd ../../xsd-schemes/fpml-pure/confirmation/fpml-repo-5-11.xsd ../../xsd-schemes/fpml-pure/confirmation/fpml-dividend-swaps-5-11.xsd ../../xsd-schemes/fpml-pure/confirmation/fpml-enum-5-11.xsd ../../xsd-schemes/fpml-pure/confirmation/fpml-return-swaps-5-11.xsd ../../xsd-schemes/fpml-pure/confirmation/fpml-business-events-5-11.xsd ../../xsd-schemes/fpml-pure/confirmation/fpml-fx-accruals-5-11.xsd ../../xsd-schemes/fpml-pure/confirmation.xsd /classes /enableDataBinding /namespace:SoftWell.Fpml.Confirmation
+          cd ../../
+          git add ./src/Fpml.Confirmation/*.cs
+          git commit -m "Fpml.Confirmation generation"
+
+          cd ./src/Fpml.Nsd/
+          ../../build_tools/xsd.exe ./schemes/nsd-bulk-reporting.xsd ./schemes/fpml-ext-merged-schema.xsd ./schemes/fpml-recordkeeping-merged-schema.xsd ./schemes/xmldsig-core-schema.xsd ./schemes/nsd-ext-merged-schema.xsd ./nsd.xsd /classes /enableDataBinding /namespace:SoftWell.Fpml.Nsd
+          cd ../../
+          git add ./src/Fpml.Nsd/*.cs
+          git commit -m "Fpml.Nsd generation"
+
+          cd ./src/Fpml.Pretrade/
+          ../../build_tools/xsd.exe ../../xsd-schemes/fpml-pure/pretrade/fpml-ird-5-11.xsd ../../xsd-schemes/fpml-pure/pretrade/fpml-main-5-11.xsd ../../xsd-schemes/fpml-pure/pretrade/fpml-fx-5-11.xsd ../../xsd-schemes/fpml-pure/pretrade/fpml-cd-5-11.xsd ../../xsd-schemes/fpml-pure/pretrade/fpml-msg-5-11.xsd ../../xsd-schemes/fpml-pure/pretrade/fpml-pretrade-processes-5-11.xsd ../../xsd-schemes/fpml-pure/pretrade/fpml-asset-5-11.xsd ../../xsd-schemes/fpml-pure/pretrade/fpml-doc-5-11.xsd ../../xsd-schemes/fpml-pure/pretrade/fpml-clearing-processes-5-11.xsd ../../xsd-schemes/fpml-pure/pretrade/xmldsig-core-schema.xsd ../../xsd-schemes/fpml-pure/pretrade/fpml-shared-5-11.xsd ../../xsd-schemes/fpml-pure/pretrade/fpml-option-shared-5-11.xsd ../../xsd-schemes/fpml-pure/pretrade/fpml-enum-5-11.xsd ../../xsd-schemes/fpml-pure/pretrade/fpml-business-events-5-11.xsd ../../xsd-schemes/fpml-pure/pretrade.xsd /classes /enableDataBinding /namespace:SoftWell.Fpml.Pretrade
+          cd ../../
+          git add ./src/Fpml.Pretrade/*.cs
+          git commit -m "Fpml.Pretrade generation"
+
+          cd ./src/Fpml.Spfi/
+          ../../build_tools/xsd.exe ./xml.xsd ./fpml/fpml-mktenv-5-6.xsd ./fpml/fpml-fx-5-6.xsd ./fpml/fpml-eq-shared-5-6.xsd ./fpml/fpml-correlation-swaps-5-6.xsd ./fpml/fpml-clearing-processes-5-6.xsd ./fpml/fpml-valuation-5-6.xsd ./fpml/fpml-credit-event-notification-5-6.xsd ./fpml/fpml-variance-swaps-5-6.xsd ./fpml/fpml-return-swaps-5-6.xsd ./fpml/fpml-confirmation-processes-5-6.xsd ./fpml/fpml-dividend-swaps-5-6.xsd ./fpml/fpml-msg-5-6.xsd ./fpml/fpml-com-5-6.xsd ./fpml/fpml-eqd-5-6.xsd ./fpml/fpml-bond-option-5-6.xsd ./fpml/example-extension-5-6.xsd ./fpml/fpml-shared-5-6.xsd ./fpml/fpml-option-shared-5-6.xsd ./fpml/fpml-ird-5-6.xsd ./fpml/fpml-doc-5-6.xsd ./fpml/fpml-business-events-5-6.xsd ./fpml/fpml-main-5-6.xsd ./fpml/xmldsig-core-schema.xsd ./fpml/fpml-enum-5-6.xsd ./fpml/fpml-cd-5-6.xsd ./fpml/fpml-asset-5-6.xsd ./fpml/fpml-generic-5-6.xsd ./fpml/fpml-riskdef-5-6.xsd ./fpml/fpml-standard-5-6.xsd ./spfi.xsd /classes /enableDataBinding /namespace:SoftWell.Fpml.Spfi
+          cd ../../
+          git add ./src/Fpml.Spfi/*.cs
+          git commit -m "Fpml.Spfi generation"
+
+          cd ./src/Fpml.SpfiFix/
+          ../../build_tools/xsd.exe ./xml.xsd ./fpml/fpml-main-5-12.xsd ./fpml/xmldsig-core-schema.xsd ./spfifix.xsd /classes /enableDataBinding /namespace:SoftWell.Fpml.SpfiFix
+          cd ../../
+          git add ./src/Fpml.SpfiFix/*.cs
+          git commit -m "Fpml.SpfiFix generation"
+
+          git push --set-upstream origin ${{github.ref_name}}
