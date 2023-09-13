@@ -1,6 +1,9 @@
 name: Generate XSD contracts
 
-on: workflow_dispatch
+on:
+  pull_request:
+    branches: [dev, release/*]
+  workflow_dispatch:
 
 jobs:
   generate:
